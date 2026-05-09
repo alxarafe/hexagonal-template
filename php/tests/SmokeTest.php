@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 final class SmokeTest extends TestCase
 {
-    public function test_framework_is_operational(): void
+    public function testFrameworkIsOperational(): void
     {
         $this->assertTrue(true);
     }
