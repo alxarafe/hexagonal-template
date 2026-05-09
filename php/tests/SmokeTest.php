@@ -10,6 +10,6 @@ final class SmokeTest extends TestCase
 {
     public function testFrameworkIsOperational(): void
     {
-        $this->assertTrue(true);
+        $this->assertTrue(class_exists(TestCase::class));
     }
 }
