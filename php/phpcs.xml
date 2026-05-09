@@ -4,4 +4,6 @@
 
   <file>src</file>
   <file>tests</file>
+  
+  <arg name="runtime-set" value="ignore_errors_on_no_files true"/>
 </ruleset>
