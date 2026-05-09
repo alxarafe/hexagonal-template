@@ -1,8 +1,14 @@
 # Plantilla Hexagonal Monorepo
 
-[badges]
+![PHP Version](https://img.shields.io/badge/PHP-8.4+-blueviolet?style=flat-square)
+![Java Version](https://img.shields.io/badge/Java-21+-orange?style=flat-square)
+![PHP CI](https://github.com/alxarafe/hexagonal-template/actions/workflows/php.yml/badge.svg)
+![Java CI](https://github.com/alxarafe/hexagonal-template/actions/workflows/java.yml/badge.svg)
+[![Quality Report](https://img.shields.io/badge/quality-report-brightgreen?style=flat-square)](https://alxarafe.github.io/hexagonal-template/quality/)
+![Static Analysis](https://img.shields.io/badge/static%20analysis-PHPStan%20%2B%20Deptrac-blue?style=flat-square)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/alxarafe/hexagonal-template/issues?utf8=✓&q=is%3Aopen%20is%3Aissue)
 
-> 📚 Also available in english: README.md
+> 📚 Also available in english: [README.md](README.md)
 
 Esta es una plantilla diseñada para aplicaciones basadas en arquitectura hexagonal estricta y modelado de dominio avanzado.
 

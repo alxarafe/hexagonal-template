@@ -19,6 +19,6 @@
         "phpunit/phpunit": "^13.1",
         "squizlabs/php_codesniffer": "*",
         "phpstan/phpstan": "*",
-        "qossmic/deptrac": "*"
+        "deptrac/deptrac": "*"
     }
 }

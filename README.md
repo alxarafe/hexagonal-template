@@ -1,8 +1,14 @@
 # Hexagonal Monorepo Template
 
-[badges]
+![PHP Version](https://img.shields.io/badge/PHP-8.4+-blueviolet?style=flat-square)
+![Java Version](https://img.shields.io/badge/Java-21+-orange?style=flat-square)
+![PHP CI](https://github.com/alxarafe/hexagonal-template/actions/workflows/php.yml/badge.svg)
+![Java CI](https://github.com/alxarafe/hexagonal-template/actions/workflows/java.yml/badge.svg)
+[![Quality Report](https://img.shields.io/badge/quality-report-brightgreen?style=flat-square)](https://alxarafe.github.io/hexagonal-template/quality/)
+![Static Analysis](https://img.shields.io/badge/static%20analysis-PHPStan%20%2B%20Deptrac-blue?style=flat-square)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/alxarafe/hexagonal-template/issues?utf8=✓&q=is%3Aopen%20is%3Aissue)
 
-> 📚 También disponible en español README.es.md
+> 📚 También disponible en español: [README.es.md](README.es.md)
 
 This is a template for building applications based on strict Hexagonal Architecture and advanced domain modeling.
 
