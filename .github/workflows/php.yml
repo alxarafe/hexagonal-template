@@ -10,10 +10,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: php
-
     steps:
 
       - name: Checkout
@@ -25,16 +21,19 @@ jobs:
           php-version: '8.4'
 
       - name: Install dependencies
-        run: composer install --no-interaction
+        run: cd php && composer install --no-interaction
+
+      - name: Bootstrap PHP tooling
+        run: bin/bootstrap_php.sh
 
       - name: PHPCS
-        run: php/vendor/bin/phpcs
+        run: cd php && vendor/bin/phpcs
 
       - name: PHPStan
-        run: php/vendor/bin/phpstan analyse
+        run: cd php && vendor/bin/phpstan analyse
 
       - name: PHPUnit
-        run: php/vendor/bin/phpunit
+        run: cd php && vendor/bin/phpunit
 
       - name: Deptrac
-        run: php/vendor/bin/deptrac analyse
+        run: cd php && vendor/bin/deptrac analyse
