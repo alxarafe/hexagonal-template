@@ -28,13 +28,13 @@ jobs:
         run: composer install --no-interaction
 
       - name: PHPCS
-        run: vendor/bin/phpcs
+        run: php/vendor/bin/phpcs
 
       - name: PHPStan
-        run: vendor/bin/phpstan analyse
+        run: php/vendor/bin/phpstan analyse
 
       - name: PHPUnit
-        run: vendor/bin/phpunit
+        run: php/vendor/bin/phpunit
 
       - name: Deptrac
-        run: vendor/bin/deptrac analyse
+        run: php/vendor/bin/deptrac analyse
