@@ -1,0 +1,40 @@
+name: PHP
+
+on:
+  push:
+  pull_request:
+
+jobs:
+
+  php-tests:
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: php
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+
+      - name: Install dependencies
+        run: composer install --no-interaction
+
+      - name: PHPCS
+        run: vendor/bin/phpcs
+
+      - name: PHPStan
+        run: vendor/bin/phpstan analyse
+
+      - name: PHPUnit
+        run: vendor/bin/phpunit
+
+      - name: Deptrac
+        run: vendor/bin/deptrac analyse

@@ -1,0 +1,15 @@
+/private/
+/vendor/
+/node_modules/
+/target/
+/.idea/
+/.vscode/
+/coverage/
+/dist/
+
+*.class
+*.log
+
+.env
+.env.*
+*.DS_Store
