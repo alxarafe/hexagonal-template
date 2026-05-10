@@ -14,3 +14,18 @@ dist/
 .env.*
 *.DS_Store
 *.cache
+
+# -------------------------
+# JAVA (Maven)
+# -------------------------
+java/target/
+java/bin/
+java/out/
+
+# -------------------------
+# PHP (Composer + PHPUnit)
+# -------------------------
+php/vendor/
+php/.phpunit.result.cache
+php/.phpunit.cache
+php/coverage/
