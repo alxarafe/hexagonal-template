@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker exec -it hexagonal_php bash
+docker exec -it php-app bash

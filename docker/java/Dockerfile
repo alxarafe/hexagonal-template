@@ -3,17 +3,14 @@ FROM eclipse-temurin:21
 # ─────────────────────────────────────────────
 # Maven
 # ─────────────────────────────────────────────
-
 RUN apt-get update && apt-get install -y maven
 
 # ─────────────────────────────────────────────
-# Directorio de trabajo
+# Working directory
 # ─────────────────────────────────────────────
-
 WORKDIR /app
 
 # ─────────────────────────────────────────────
-# Comando por defecto
+# Default command
 # ─────────────────────────────────────────────
-
-CMD ["tail", "-f", "/dev/null"]
+CMD ["mvn", "spring-boot:run"]

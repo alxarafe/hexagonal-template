@@ -7,12 +7,12 @@ echo "Running PHP tests..."
 # Ensure Docker services are running
 # ─────────────────────────────────────────────
 
-if ! docker compose ps | grep -q "hexagonal_php"; then
+if ! docker compose ps | grep -q "php-app"; then
     echo "❌ PHP container is not running"
     exit 1
 fi
 
-if ! docker compose ps | grep -q "app_java"; then
+if ! docker compose ps | grep -q "java-app"; then
     echo "❌ Java container is not running"
     exit 1
 fi
@@ -21,16 +21,14 @@ fi
 # Ensure dependencies (PHP)
 # ─────────────────────────────────────────────
 
-if [ ! -d "vendor" ]; then
-    echo "Vendor not found. Bootstrapping dependencies..."
-    docker compose exec hexagonal_php composer install --no-interaction
-fi
+echo "Bootstrapping dependencies..."
+docker compose exec php-app composer install --no-interaction
 
 # ─────────────────────────────────────────────
 # PHP tests
 # ─────────────────────────────────────────────
 
-docker compose exec hexagonal_php vendor/bin/phpunit
+docker compose exec php-app vendor/bin/phpunit
 
 echo "Running Java tests..."
 
@@ -38,6 +36,6 @@ echo "Running Java tests..."
 # Java tests
 # ─────────────────────────────────────────────
 
-docker compose exec app_java mvn test
+docker compose exec java-app mvn test
 
 echo "All tests passed"

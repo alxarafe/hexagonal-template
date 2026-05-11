@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker exec -it hexagonal_php vendor/bin/phpunit
+docker exec -i php-app vendor/bin/phpunit

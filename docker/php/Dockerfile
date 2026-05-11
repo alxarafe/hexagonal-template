@@ -1,4 +1,4 @@
-FROM php:8.4-cli
+FROM php:8.4-apache
 
 # ─────────────────────────────────────────────
 # System dependencies
@@ -13,12 +13,22 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # ─────────────────────────────────────────────
+# Apache modules
+# ─────────────────────────────────────────────
+RUN a2enmod rewrite
+
+# ─────────────────────────────────────────────
+# VirtualHost
+# ─────────────────────────────────────────────
+COPY docker/php/apache.conf /etc/apache2/sites-available/000-default.conf
+
+# ─────────────────────────────────────────────
 # Composer
 # ─────────────────────────────────────────────
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # ─────────────────────────────────────────────
-# Xdebug (installed but NOT enabled by default mode)
+# Xdebug (installed but DISABLED by default)
 # ─────────────────────────────────────────────
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
@@ -27,16 +37,9 @@ RUN pecl install xdebug \
 # PHP config
 # ─────────────────────────────────────────────
 COPY docker/php/php.ini /usr/local/etc/php/php.ini
-
-# Xdebug config (DISABLED by default)
 COPY docker/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 # ─────────────────────────────────────────────
 # Workdir
 # ─────────────────────────────────────────────
 WORKDIR /var/www/php
-
-# ─────────────────────────────────────────────
-# Default command (IMPORTANT FIX)
-# ─────────────────────────────────────────────
-CMD ["tail", "-f", "/dev/null"]

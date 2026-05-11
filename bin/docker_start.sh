@@ -9,8 +9,8 @@ set -euo pipefail
 source "$(dirname "$0")/lib/bootstrap.sh"
 
 REQUIRED_SERVICES=(
-    "hexagonal_php"
-    "app_java"
+    "php-app"
+    "java-app"
     "database"
 )
 

@@ -4,7 +4,6 @@
 ![Java Version](https://img.shields.io/badge/Java-21+-orange?style=flat-square)
 ![PHP CI](https://github.com/alxarafe/hexagonal-template/actions/workflows/php.yml/badge.svg)
 ![Java CI](https://github.com/alxarafe/hexagonal-template/actions/workflows/java.yml/badge.svg)
-[![Quality Report](https://img.shields.io/badge/quality-report-brightgreen?style=flat-square)](https://alxarafe.github.io/hexagonal-template/quality/)
 ![Static Analysis](https://img.shields.io/badge/static%20analysis-PHPStan%20%2B%20Deptrac-blue?style=flat-square)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/alxarafe/hexagonal-template/issues?utf8=✓&q=is%3Aopen%20is%3Aissue)
 
@@ -36,8 +35,8 @@ This project distinguishes two identity layers:
 - Database
 
 ### Infrastructure layer (how it is implemented)
-- app_php
-- app_java
+- php-app
+- java-app
 - database
 
 Both layers represent the same system from different abstraction levels and must not be mixed in naming or documentation.
@@ -64,4 +63,58 @@ Both layers represent the same system from different abstraction levels and must
 /docs
 /java
 /php
-/private
+
+---
+
+## QUICK START
+
+### Prerequisites
+
+- Docker & Docker Compose v2
+
+### Start the environment
+
+```bash
+./bin/start.sh        # Builds & starts all containers
+```
+
+### Run tests
+
+```bash
+# Inside containers:
+./bin/php_test.sh     # PHPUnit (unit + integration + contract)
+./bin/java_test.sh    # Maven (unit + architecture)
+
+# Full pipeline:
+./bin/ci_local.sh     # PHP tests + Java tests
+```
+
+### Direct commands (without Docker)
+
+```bash
+cd php && composer install && vendor/bin/phpunit
+cd php && vendor/bin/phpcs && vendor/bin/phpstan analyse && vendor/bin/deptrac analyse
+cd java && mvn test
+```
+
+### Apply database migrations
+
+```bash
+./bin/migrate.sh
+```
+
+### Access APIs
+
+| Stack  | URL                        |
+|--------|----------------------------|
+| PHP    | http://localhost:8081       |
+| Java   | http://localhost:8082       |
+| DB     | postgresql://localhost:5432 |
+
+### Stop
+
+```bash
+./bin/docker_stop.sh
+```
+
+---

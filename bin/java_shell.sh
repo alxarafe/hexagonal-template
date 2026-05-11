@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker exec -it app_java bash
+docker exec -it java-app bash

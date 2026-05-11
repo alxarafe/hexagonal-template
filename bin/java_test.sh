@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker exec -it app_java mvn test
+docker exec -i java-app mvn test
