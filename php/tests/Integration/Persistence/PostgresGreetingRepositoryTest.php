@@ -12,6 +12,9 @@ final class PostgresGreetingRepositoryTest extends DatabaseTestCase
 {
     private PostgresGreetingRepository $repository;
 
+    /**
+     * @return list<string>
+     */
     protected static function getMigrationFiles(): array
     {
         return [

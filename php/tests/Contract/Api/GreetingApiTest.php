@@ -62,7 +62,11 @@ final class GreetingApiTest extends TestCase
         $host = parse_url($baseUrl, PHP_URL_HOST);
         $port = parse_url($baseUrl, PHP_URL_PORT) ?: 80;
 
-        $sock = @fsockopen($host, $port, $errno, $errstr, 2);
+        if (!is_string($host)) {
+            self::markTestSkipped("Invalid URL: $baseUrl");
+        }
+
+        $sock = @fsockopen((string)$host, $port, $errno, $errstr, 2);
         if ($sock === false) {
             self::markTestSkipped("Service $host:$port is not reachable ($errstr)");
         }

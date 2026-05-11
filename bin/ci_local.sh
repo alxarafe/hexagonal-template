@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-echo "Running PHP tests..."
+echo "=== PHP CI Pipeline ==="
 
 # ─────────────────────────────────────────────
 # Ensure Docker services are running
@@ -25,17 +25,40 @@ echo "Bootstrapping dependencies..."
 docker compose exec php-app composer install --no-interaction
 
 # ─────────────────────────────────────────────
-# PHP tests
+# PHP Code Style (PHPCS)
 # ─────────────────────────────────────────────
 
+echo "Running PHPCS..."
+docker compose exec php-app vendor/bin/phpcs
+
+# ─────────────────────────────────────────────
+# PHP Static Analysis (PHPStan)
+# ─────────────────────────────────────────────
+
+echo "Running PHPStan..."
+docker compose exec php-app vendor/bin/phpstan analyse
+
+# ─────────────────────────────────────────────
+# PHP Tests (PHPUnit)
+# ─────────────────────────────────────────────
+
+echo "Running PHPUnit..."
 docker compose exec php-app vendor/bin/phpunit
 
-echo "Running Java tests..."
-
 # ─────────────────────────────────────────────
-# Java tests
+# PHP Architecture (Deptrac)
 # ─────────────────────────────────────────────
 
+echo "Running Deptrac..."
+docker compose exec php-app vendor/bin/deptrac analyse
+
+echo "=== Java CI Pipeline ==="
+
+# ─────────────────────────────────────────────
+# Java Tests (Maven + ArchUnit)
+# ─────────────────────────────────────────────
+
+echo "Running Maven tests..."
 docker compose exec java-app mvn test
 
-echo "All tests passed"
+echo "✅ All CI checks passed"

@@ -13,14 +13,14 @@ abstract class DatabaseTestCase extends TestCase
 
     private ?\PDO $pdo = null;
 
+    /**
+     * @return list<string>
+     */
     abstract protected static function getMigrationFiles(): array;
 
     protected function getPdo(): \PDO
     {
-        if ($this->pdo === null) {
-            $this->pdo = $this->createPdo();
-        }
-        return $this->pdo;
+        return $this->pdo ??= $this->createPdo();
     }
 
     protected function setUp(): void
@@ -70,9 +70,12 @@ abstract class DatabaseTestCase extends TestCase
             return;
         }
 
-        $tables = $pdo->query(
-            "SELECT tablename FROM pg_tables WHERE schemaname = 'public'"
-        )->fetchAll(\PDO::FETCH_COLUMN);
+        $stmt = $pdo->query("SELECT tablename FROM pg_tables WHERE schemaname = 'public'");
+        if ($stmt === false) {
+            return;
+        }
+
+        $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
 
         if ($tables !== []) {
             $pdo->exec('SET session_replication_role = replica');
@@ -83,7 +86,7 @@ abstract class DatabaseTestCase extends TestCase
         }
     }
 
-    private function createPdo(): ?\PDO
+    private function createPdo(): \PDO
     {
         $pdo = self::createStaticPdo();
         if ($pdo === null) {
